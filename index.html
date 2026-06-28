@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M Chidanand — Angular Developer & Full Stack Engineer</title>
+<meta name="description" content="M Chidanand — Angular Developer & Full Stack Engineer at Dedalus Healthcare. Angular, TypeScript, NgRx, Spring Boot, Quarkus, Microservices.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --ink:#0c0e12;
+  --panel:#15181d;
+  --panel-2:#1b1f26;
+  --line:#262b33;
+  --paper:#f4f4f2;
+  --slate:#8b92a8;
+  --slate-dim:#5b6175;
+  --amber:#7c5cff;
+  --amber-dim:#7c5cff33;
+  --teal:#3ddad0;
+  --r:14px;
+  --maxw:1180px;
+}
+[data-theme="light"]{
+  --ink:#f6f7fb;
+  --panel:#ffffff;
+  --panel-2:#f1f3f9;
+  --line:#e2e5ee;
+  --paper:#0f1525;
+  --slate:#5b6478;
+  --slate-dim:#8a93a6;
+  --amber:#6d4ef0;
+  --amber-dim:#6d4ef022;
+  --teal:#0ea5b7;
+}
+html{transition:none;}
+body{transition:background .3s ease, color .3s ease;}
+*{transition:background-color .3s ease, border-color .3s ease, color .3s ease;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--amber);color:#0c0e12;}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-0.02em;}
+.mono{font-family:'JetBrains Mono',monospace;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+}
+
+/* ---------- Pulse line signature, persistent thread ---------- */
+.pulse-rail{
+  position:fixed;left:0;top:0;width:100%;height:3px;z-index:300;
+  background:var(--line);
+}
+.pulse-fill{
+  height:100%;width:0%;background:linear-gradient(90deg,var(--amber),var(--teal));
+  box-shadow:0 0 12px var(--amber-dim);
+  transition:width .08s linear;
+}
+
+/* ---------- Custom cursor pulse dot (desktop only) ---------- */
+.cursor-dot{
+  position:fixed;width:8px;height:8px;border-radius:50%;background:var(--amber);
+  pointer-events:none;z-index:9999;transform:translate(-50%,-50%);
+  transition:transform .15s ease, opacity .2s ease;
+  display:none;
+}
+@media (hover:hover) and (pointer:fine){ .cursor-dot{display:block;} }
+
+/* ---------- NAV ---------- */
+.navbar{
+  position:fixed;top:3px;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 32px;transition:all .35s ease;
+  background:transparent;
+}
+.navbar.scrolled{
+  padding:14px 32px;background:color-mix(in srgb, var(--ink) 85%, transparent);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;display:flex;align-items:center;gap:10px;}
+.logo-photo{width:36px;height:36px;border-radius:50%;overflow:hidden;border:1.5px solid var(--line);flex:none;}
+.logo-photo img{width:100%;height:100%;object-fit:cover;}
+.logo .dot{color:var(--amber);}
+.nav-links{display:flex;gap:34px;list-style:none;align-items:center;}
+.nav-links a{
+  font-size:.92rem;color:var(--slate);position:relative;padding:4px 0;
+  transition:color .25s;
+}
+.nav-links a::after{
+  content:'';position:absolute;left:0;bottom:-2px;height:1px;width:0;background:var(--amber);
+  transition:width .25s ease;
+}
+.nav-links a:hover{color:var(--paper);}
+.nav-links a:hover::after{width:100%;}
+.btn-resume-nav{
+  font-family:'JetBrains Mono';font-size:.78rem;color:var(--paper)!important;
+  border:1px solid var(--line);padding:8px 16px;border-radius:30px;
+}
+.btn-resume-nav:hover{border-color:var(--amber);color:var(--amber)!important;}
+.btn-resume-nav::after{display:none;}
+.nav-right{display:flex;align-items:center;gap:14px;}
+.theme-toggle{
+  width:40px;height:40px;border-radius:50%;border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:center;color:var(--paper);
+  transition:.25s;font-size:.95rem;
+}
+.theme-toggle:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px) rotate(15deg);}
+.hamburger{display:none;flex-direction:column;gap:5px;}
+.hamburger span{width:22px;height:2px;background:var(--paper);transition:.3s;}
+@media (max-width:860px){
+  .nav-links{
+    position:fixed;top:0;right:-100%;height:100vh;width:78%;max-width:320px;
+    background:var(--panel);flex-direction:column;justify-content:center;
+    transition:right .4s cubic-bezier(.65,0,.35,1);border-left:1px solid var(--line);
+    gap:28px;
+  }
+  .nav-links.open{right:0;}
+  .hamburger{display:flex;z-index:210;}
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  position:relative;padding:140px 32px 80px;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(124,92,255,.12), transparent),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(61,218,208,.10), transparent);
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:.35;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 70% 60% at 50% 30%, black, transparent 75%);
+}
+.hero-inner{max-width:var(--maxw);margin:0 auto;width:100%;display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:center;position:relative;z-index:2;}
+@media (max-width:900px){.hero-inner{grid-template-columns:1fr;gap:48px;}}
+
+.status-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--line);border-radius:30px;padding:7px 14px 7px 10px;
+  font-family:'JetBrains Mono';font-size:.76rem;color:var(--teal);background:rgba(61,218,208,.06);
+  margin-bottom:28px;
+}
+.status-chip .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(61,218,208,.5);animation:ping 1.8s infinite;}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(61,218,208,.5);}70%{box-shadow:0 0 0 7px rgba(61,218,208,0);}100%{box-shadow:0 0 0 0 rgba(61,218,208,0);}}
+
+.eyebrow{font-family:'JetBrains Mono';font-size:.85rem;color:var(--slate);margin-bottom:10px;letter-spacing:.02em;}
+.hero h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;font-weight:700;margin-bottom:14px;}
+.hero h1 .accent{color:var(--amber);}
+.hero-role{font-size:clamp(1.05rem,2vw,1.35rem);color:var(--slate);font-weight:500;margin-bottom:22px;}
+.hero-role b{color:var(--paper);font-weight:600;}
+.hero-summary{max-width:560px;color:var(--slate);font-size:1.02rem;line-height:1.7;margin-bottom:36px;}
+.hero-summary b{color:var(--paper);font-weight:600;}
+
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px;}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:30px;
+  font-weight:600;font-size:.92rem;transition:all .25s ease;
+}
+.btn-primary{background:var(--amber);color:#0c0e12;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(255,122,61,.28);}
+.btn-outline{border:1px solid var(--line);color:var(--paper);}
+.btn-outline:hover{border-color:var(--teal);color:var(--teal);transform:translateY(-2px);}
+.btn-icon{width:46px;height:46px;padding:0;justify-content:center;border:1px solid var(--line);border-radius:50%;font-size:1.05rem;}
+.btn-icon:hover{border-color:var(--paper);transform:translateY(-2px);}
+.icon-github:hover{border-color:#f0f6fc !important;color:#f0f6fc !important;background:#1118271a;}
+[data-theme="light"] .icon-github:hover{border-color:#24292f !important;color:#24292f !important;}
+.icon-linkedin:hover{border-color:#0A66C2 !important;color:#0A66C2 !important;background:#0a66c21a;}
+.icon-email:hover{border-color:#EA4335 !important;color:#EA4335 !important;background:#ea43351a;}
+.icon-resume:hover{border-color:var(--amber) !important;color:var(--amber) !important;background:var(--amber-dim);}
+
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;}
+.badge{
+  font-family:'JetBrains Mono';font-size:.74rem;color:var(--slate);
+  border:1px solid var(--line);border-radius:8px;padding:7px 11px;display:inline-flex;align-items:center;gap:6px;
+}
+.badge i{color:var(--amber);}
+
+/* hero visual: pulse monitor card */
+.hero-visual{position:relative;display:flex;justify-content:center;}
+.monitor-card{
+  width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+}
+.monitor-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.monitor-label{font-family:'JetBrains Mono';font-size:.72rem;color:var(--slate-dim);}
+.monitor-bpm{font-family:'JetBrains Mono';color:var(--teal);font-size:.9rem;}
+.monitor-screen{
+  background:var(--ink);border-radius:8px;padding:18px 8px;margin:10px 0 18px;overflow:hidden;border:1px solid var(--line);filter:brightness(0.85);
+}
+.monitor-screen svg{width:100%;height:90px;display:block;}
+.pulse-path{
+  fill:none;stroke:var(--amber);stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:340;stroke-dashoffset:340;
+  animation:drawpulse 2.4s linear infinite;
+}
+@keyframes drawpulse{ to{ stroke-dashoffset:-340; } }
+.avatar-stack{display:flex;align-items:center;gap:14px;}
+.avatar-ring{
+  width:50px;height:50px;border-radius:50%;flex:none;
+  background:linear-gradient(135deg,var(--amber),var(--teal));
+  display:flex;align-items:center;justify-content:center;padding:2px;
+}
+.avatar-ring .inner{
+  width:100%;height:100%;border-radius:50%;background:var(--panel-2);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-weight:700;
+}
+.avatar-ring img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+.avatar-name{font-weight:600;font-size:.95rem;}
+.avatar-sub{color:var(--slate);font-size:.82rem;}
+.float-tags{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap;}
+.float-tag{font-family:'JetBrains Mono';font-size:.7rem;color:var(--slate);border:1px solid var(--line);border-radius:6px;padding:5px 9px;}
+
+.scroll-cue{
+  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--slate-dim);
+  font-family:'JetBrains Mono';font-size:.72rem;
+}
+.scroll-cue .line{width:1px;height:34px;background:var(--line);position:relative;overflow:hidden;}
+.scroll-cue .line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:50%;background:var(--amber);animation:scrolldrip 1.8s ease-in-out infinite;}
+@keyframes scrolldrip{0%{top:-50%;}100%{top:100%;}}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-stagger > *{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal-stagger.in > *{opacity:1;transform:translateY(0);}
+
+/* ---------- SECTION shell ---------- */
+section{padding:120px 0;position:relative;}
+.section-head{text-align:center;max-width:680px;margin:0 auto 64px;}
+.tag-label{
+  font-family:'JetBrains Mono';font-size:.8rem;color:var(--amber);margin-bottom:12px;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.tag-label::before,.tag-label::after{content:'';width:18px;height:1px;background:var(--amber);}
+.section-title{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:700;}
+.section-sub{color:var(--slate);margin-top:14px;font-size:1rem;line-height:1.6;}
+
+/* ---------- STATS ---------- */
+.stats-bar{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0;
+}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+@media (max-width:760px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+.stat{text-align:center;border-right:1px solid var(--line);}
+.stat:last-child{border-right:none;}
+@media (max-width:760px){.stat:nth-child(2n){border-right:none;}}
+.stat-num{font-family:'Space Grotesk';font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;color:var(--paper);}
+.stat-num .unit{color:var(--amber);}
+.stat-label{font-family:'JetBrains Mono';font-size:.74rem;color:var(--slate);margin-top:6px;}
+
+/* ---------- ABOUT ---------- */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+.about-card-photo{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;text-align:center;
+}
+@media (min-width:861px){
+  .about-card-photo{position:sticky;top:120px;}
+}
+.photo-square{width:140px;height:140px;margin:0 auto 20px;border-radius:50%;overflow:hidden;background:var(--panel-2);display:flex;align-items:center;justify-content:center;font-family:'Space Grotesk';font-size:2rem;font-weight:700;color:var(--slate-dim);border:2px solid var(--line);}
+.photo-square img{width:100%;height:100%;object-fit:cover;}
+.about-card-photo h3{font-size:1.2rem;}
+.about-card-photo .role{color:var(--amber);font-size:.88rem;font-family:'JetBrains Mono';margin:6px 0 18px;}
+.about-social{display:flex;gap:10px;margin-top:18px;}
+.about-social a{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s;}
+.about-social a:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px);}
+
+.about-points{display:flex;flex-direction:column;gap:28px;}
+.point{display:flex;gap:20px;padding-bottom:28px;border-bottom:1px solid var(--line);}
+.point:last-child{border-bottom:none;}
+.point-num{font-family:'JetBrains Mono';color:var(--slate-dim);font-size:.85rem;flex:none;padding-top:4px;}
+.point h4{font-size:1.1rem;margin-bottom:8px;}
+.point p{color:var(--slate);line-height:1.7;font-size:.96rem;}
+.point p b{color:var(--paper);}
+
+/* ---------- EXPERIENCE timeline ---------- */
+.timeline{position:relative;max-width:880px;margin:0 auto;}
+.timeline::before{content:'';position:absolute;left:13px;top:8px;bottom:8px;width:1px;background:var(--line);}
+.t-item{position:relative;padding-left:48px;margin-bottom:56px;}
+.t-item:last-child{margin-bottom:0;}
+.t-dot{
+  position:absolute;left:0;top:2px;width:28px;height:28px;border-radius:50%;
+  background:var(--panel);border:1px solid var(--amber);color:var(--amber);
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;z-index:2;
+}
+.t-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;margin-bottom:10px;}
+.t-head h3{font-size:1.2rem;}
+.t-company{color:var(--amber);font-size:.88rem;font-family:'JetBrains Mono';margin-top:4px;}
+.t-period{font-family:'JetBrains Mono';font-size:.78rem;color:var(--slate);border:1px solid var(--line);padding:5px 11px;border-radius:20px;white-space:nowrap;height:fit-content;}
+.t-bullets{list-style:none;color:var(--slate);line-height:1.8;font-size:.95rem;margin-bottom:16px;}
+.t-bullets li{position:relative;padding-left:18px;margin-bottom:6px;}
+.t-bullets li::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--amber);}
+.t-tags{display:flex;flex-wrap:wrap;gap:8px;}
+.t-tag{font-family:'JetBrains Mono';font-size:.72rem;color:var(--teal);background:rgba(61,218,208,.08);border:1px solid rgba(61,218,208,.2);padding:5px 10px;border-radius:6px;}
+
+/* ---------- SKILLS ---------- */
+.core-skills{max-width:780px;margin:0 auto 70px;}
+.skill-row{margin-bottom:22px;}
+.skill-row-top{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.92rem;}
+.skill-row-top .name{display:flex;align-items:center;gap:10px;font-weight:600;}
+.skill-row-top .pct{font-family:'JetBrains Mono';color:var(--amber);}
+.skill-track{height:6px;background:var(--panel-2);border-radius:4px;overflow:hidden;}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--teal));width:0;border-radius:4px;transition:width 1.4s cubic-bezier(.22,1,.36,1);}
+
+.cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+@media (max-width:900px){.cat-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:600px){.cat-grid{grid-template-columns:1fr;}}
+.cat-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:.3s;}
+.cat-card:hover{border-color:var(--amber-dim);transform:translateY(-4px);}
+.cat-card h4{font-size:1rem;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.cat-card h4 i{color:var(--amber);}
+.skill-pills{display:flex;flex-wrap:wrap;gap:7px;}
+.pill{font-family:'JetBrains Mono';font-size:.72rem;color:var(--slate);border:1px solid var(--line);padding:5px 10px;border-radius:6px;}
+
+.kw-bar{margin-top:60px;border-top:1px solid var(--line);padding-top:30px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;}
+.kw-bar .lbl{font-family:'JetBrains Mono';font-size:.78rem;color:var(--slate-dim);}
+.kw{font-family:'JetBrains Mono';font-size:.72rem;color:var(--slate-dim);border:1px dashed var(--line);padding:4px 9px;border-radius:5px;}
+
+/* ---------- PROJECTS ---------- */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media (max-width:1000px){.proj-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:760px){.proj-grid{grid-template-columns:1fr;}}
+.proj-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px;
+  display:flex;flex-direction:column;transition:.3s;
+}
+.proj-card:hover{transform:translateY(-5px);border-color:var(--amber-dim);box-shadow:0 24px 40px -24px rgba(0,0,0,.6);}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;}
+.proj-icon{width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.proj-gh{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s;}
+.proj-gh:hover{border-color:var(--paper);transform:rotate(8deg);}
+.proj-card h3{font-size:1.18rem;margin-bottom:10px;}
+.proj-card .summary{color:var(--slate);font-size:.92rem;line-height:1.65;margin-bottom:18px;}
+.proj-impact{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.proj-impact div{display:flex;gap:9px;font-size:.85rem;color:var(--teal);}
+.proj-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px;}
+.proj-link{margin-top:auto;font-size:.88rem;font-weight:600;color:var(--paper);display:inline-flex;align-items:center;gap:8px;}
+.proj-link i{transition:.25s;}
+.proj-card:hover .proj-link i{transform:translateX(4px);}
+
+.sub-block{margin-top:90px;}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+@media (max-width:760px){.cert-grid{grid-template-columns:1fr;}}
+.cert-card{display:flex;gap:14px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px;}
+.cert-card i{color:var(--amber);font-size:1.3rem;}
+.cert-card .name{font-weight:600;font-size:.92rem;display:block;}
+.cert-card .issuer{color:var(--slate);font-size:.8rem;}
+
+.pub-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:30px;max-width:780px;margin:0 auto;}
+.pub-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.pub-badge{font-family:'JetBrains Mono';font-size:.76rem;color:var(--amber);display:flex;align-items:center;gap:8px;}
+.pub-year{font-family:'JetBrains Mono';color:var(--slate);font-size:.8rem;}
+.pub-card h3{font-size:1.2rem;margin-bottom:12px;}
+.pub-card p{color:var(--slate);line-height:1.7;font-size:.93rem;margin-bottom:18px;}
+
+.research-card{
+  position:relative;background:linear-gradient(150deg, var(--panel) 0%, var(--panel-2) 120%);
+  border:1px solid var(--line);border-left:4px solid var(--amber);
+  border-radius:var(--r);padding:36px;max-width:780px;margin:0 auto;overflow:hidden;
+}
+.research-card::before{
+  content:'IEEE';position:absolute;right:-6px;top:-22px;font-family:'Space Grotesk';font-weight:800;
+  font-size:6rem;color:var(--line);opacity:.55;letter-spacing:-0.04em;line-height:1;pointer-events:none;
+}
+.research-stamp{
+  position:absolute;top:26px;right:26px;border:2px solid var(--amber);color:var(--amber);
+  font-family:'JetBrains Mono';font-size:.68rem;font-weight:600;padding:6px 14px;border-radius:30px;
+  transform:rotate(7deg);background:var(--amber-dim);letter-spacing:.05em;z-index:2;
+}
+.research-card .pub-badge{position:relative;z-index:2;}
+.research-card h3{position:relative;z-index:2;font-size:1.3rem;margin-bottom:14px;max-width:90%;}
+.research-card p{position:relative;z-index:2;}
+.research-card .proj-tags{position:relative;z-index:2;}
+.research-card .pub-links{position:relative;z-index:2;display:flex;gap:24px;flex-wrap:wrap;margin-top:18px;}
+
+/* ---------- ACHIEVEMENTS ---------- */
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+@media (max-width:1000px){.ach-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.ach-grid{grid-template-columns:1fr;}}
+.ach-clickable{cursor:pointer;position:relative;}
+.ach-clickable:hover{transform:translateY(-6px);border-color:var(--amber);box-shadow:0 20px 40px -20px rgba(0,0,0,.5);}
+.ach-clickable:hover .ico{transform:scale(1.15) rotate(-6deg);}
+.ach .ico{transition:transform .3s ease;}
+.ach-view{
+  display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-family:'JetBrains Mono';
+  font-size:.74rem;color:var(--amber);opacity:0;transform:translateY(4px);transition:.25s ease;
+}
+.ach-clickable:hover .ach-view{opacity:1;transform:translateY(0);}
+
+.lightbox{
+  position:fixed;inset:0;z-index:500;background:rgba(5,6,9,.86);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;
+  transition:opacity .25s ease;padding:40px 20px;
+}
+.lightbox.open{opacity:1;pointer-events:auto;}
+.lightbox-inner{max-width:min(680px,92vw);max-height:88vh;display:flex;flex-direction:column;align-items:center;gap:16px;
+  transform:scale(.92);transition:transform .25s ease;}
+.lightbox.open .lightbox-inner{transform:scale(1);}
+.lightbox-inner img{max-width:100%;max-height:74vh;border-radius:12px;border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 70px -20px rgba(0,0,0,.7);object-fit:contain;background:#0c0e12;}
+.lightbox-title{color:#f4f4f2;font-family:'Space Grotesk';font-weight:600;text-align:center;font-size:1rem;}
+.lightbox-close{
+  position:absolute;top:24px;right:28px;width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:#f4f4f2;
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:.2s;
+}
+.lightbox-close:hover{background:var(--amber);color:#0c0e12;border-color:var(--amber);}
+.ach{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:30px;text-align:left;transition:.3s;}
+.ach:hover{transform:translateY(-4px);border-color:var(--amber-dim);}
+.ach .ico{font-size:1.8rem;margin-bottom:14px;}
+.ach h4{font-size:1.02rem;margin-bottom:8px;}
+.ach p{color:var(--slate);font-size:.88rem;line-height:1.6;}
+
+/* ---------- CONTACT ---------- */
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+.contact-info h3{font-size:1.5rem;margin-bottom:14px;}
+.contact-info > p{color:var(--slate);line-height:1.7;margin-bottom:32px;}
+.info-item{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;}
+.info-ico{width:42px;height:42px;border-radius:10px;background:var(--panel-2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--amber);flex:none;}
+.info-item strong{display:block;font-size:.78rem;color:var(--slate-dim);font-family:'JetBrains Mono';margin-bottom:3px;}
+.info-item span,.info-item a{font-size:.96rem;}
+.contact-socials{display:flex;gap:12px;margin-top:30px;}
+.contact-socials a{width:46px;height:46px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:.25s;}
+.contact-socials a:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px);}
+
+.form-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:36px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+@media (max-width:500px){.form-row{grid-template-columns:1fr;}}
+.f-group{margin-bottom:20px;}
+.f-group label{display:block;font-family:'JetBrains Mono';font-size:.76rem;color:var(--slate);margin-bottom:8px;}
+.f-group input,.f-group textarea{
+  width:100%;background:var(--panel-2);border:1px solid var(--line);border-radius:8px;
+  padding:13px 15px;color:var(--paper);font-family:'Inter';font-size:.92rem;transition:.25s;resize:vertical;
+}
+.f-group input:focus,.f-group textarea:focus{outline:none;border-color:var(--amber);background:var(--panel-2);}
+.btn-submit{width:100%;justify-content:center;}
+.success-banner{
+  display:flex;align-items:center;gap:12px;background:rgba(61,218,208,.08);border:1px solid var(--teal);
+  color:var(--teal);padding:18px;border-radius:10px;font-size:.92rem;
+}
+
+/* ---------- FOOTER ---------- */
+.footer{border-top:1px solid var(--line);padding:40px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
+.footer-logo{font-family:'Space Grotesk';font-weight:700;}
+.footer-desc{color:var(--slate-dim);font-size:.82rem;margin-top:6px;font-family:'JetBrains Mono';}
+.footer-right{text-align:right;}
+.footer-right p{color:var(--slate);font-size:.85rem;}
+@media (max-width:600px){.footer{flex-direction:column;text-align:center;}.footer-right{text-align:center;}}
+
+/* back to top */
+.totop{
+  position:fixed;bottom:28px;right:28px;width:46px;height:46px;border-radius:50%;
+  background:var(--panel);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+  color:var(--paper);z-index:150;opacity:0;pointer-events:none;transition:.3s;
+}
+.totop.show{opacity:1;pointer-events:auto;}
+.totop:hover{border-color:var(--amber);color:var(--amber);}
+
+@media (max-width:600px){
+  .wrap{padding:0 20px;}
+  section{padding:80px 0;}
+  .hero{padding:120px 20px 60px;}
+}
+</style>
+</head>
+<body>
+
+<div class="pulse-rail"><div class="pulse-fill" id="pulseFill"></div></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- NAV -->
+<nav class="navbar" id="navbar">
+  <a class="logo" href="#hero">
+    <span class="logo-photo"><img src="assets/profile.jpeg" alt="M Chidanand" onerror="this.parentElement.style.display='none'"></span>
+    &lt;Chidanand<span class="dot">/</span>&gt;
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" class="navlink">About</a></li>
+    <li><a href="#experience" class="navlink">Experience</a></li>
+    <li><a href="#skills" class="navlink">Skills</a></li>
+    <li><a href="#projects" class="navlink">Projects</a></li>
+    <li><a href="#education" class="navlink">Education</a></li>
+    <li><a href="#contact" class="navlink">Contact</a></li>
+    <li><a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="btn-resume-nav"><i class="fas fa-file-pdf"></i> Resume</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="status-chip"><span class="dot"></span> Open to Senior Angular Roles</div>
+      <div class="eyebrow">Hi, I'm</div>
+      <h1>M Chidanand</h1>
+      <p class="hero-role">Angular Developer &middot; <b>Full Stack Engineer</b></p>
+      <p class="hero-summary">
+        Software Engineer with <b>2 years 11 months</b> building enterprise <b>Angular</b> and
+        <b>Spring Boot</b> applications in healthcare. Improved page load speed by <b>20%</b>,
+        scaled test coverage to <b>90%</b>, and delivered <b>20+ Agile sprint releases</b>.
+        Awarded Recognition &amp; Reward (2025) and nominated for the DNA Core Award in 2024 and 2025.
+      </p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary"><i class="fas fa-rocket"></i> View Projects</a>
+        <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="btn btn-outline"><i class="fas fa-download"></i> Download Resume</a>
+        <a href="#contact" class="btn btn-outline"><i class="fas fa-paper-plane"></i> Contact Me</a>
+        <a href="https://github.com/Chida1602" target="_blank" rel="noopener" class="btn btn-icon icon-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/m-chidanand" target="_blank" rel="noopener" class="btn btn-icon icon-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="mailto:maasandramchidanand@gmail.com" class="btn btn-icon icon-email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="btn btn-icon icon-resume" aria-label="Download Resume"><i class="fas fa-file-pdf"></i></a>
+      </div>
+      <div class="hero-badges">
+        <span class="badge"><i class="fas fa-briefcase"></i> 2 Yrs 11 Mo Exp</span>
+        <span class="badge"><i class="fab fa-angular"></i> Angular</span>
+        <span class="badge"><i class="fas fa-leaf"></i> Spring Boot</span>
+        <span class="badge"><i class="fas fa-map-marker-alt"></i> Chennai</span>
+        <span class="badge"><i class="fas fa-building"></i> Dedalus Healthcare</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="monitor-card">
+        <div class="monitor-top">
+          <span class="monitor-label mono">SYSTEM STATUS</span>
+          <span class="monitor-bpm mono">● ACTIVE</span>
+        </div>
+        <div class="monitor-screen">
+          <svg viewBox="0 0 300 90" preserveAspectRatio="none">
+            <polyline class="pulse-path" points="0,45 40,45 55,15 70,75 85,45 130,45 145,25 160,65 175,45 300,45"/>
+          </svg>
+        </div>
+        <div class="avatar-stack">
+          <div class="avatar-ring"><div class="inner"><img src="assets/profile.jpeg" alt="M Chidanand" onerror="this.style.display='none';this.parentElement.textContent='MC'"></div></div>
+          <div>
+            <div class="avatar-name">M Chidanand</div>
+            <div class="avatar-sub">Angular Developer &middot; Dedalus Healthcare</div>
+          </div>
+        </div>
+        <div class="float-tags">
+          <span class="float-tag"><i class="fab fa-angular"></i> Angular 12+</span>
+          <span class="float-tag"><i class="fas fa-leaf"></i> Spring Boot</span>
+          <span class="float-tag"><i class="fas fa-database"></i> NgRx</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><div class="line"></div></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-grid reveal-stagger" id="statsGrid">
+      <div class="stat"><div class="stat-num"><span class="count" data-target="2.11">0</span><span class="unit">yrs</span></div><div class="stat-label">EXPERIENCE</div></div>
+      <div class="stat"><div class="stat-num"><span class="count" data-target="20">0</span><span class="unit">%</span></div><div class="stat-label">FASTER PAGE LOAD</div></div>
+      <div class="stat"><div class="stat-num"><span class="count" data-target="90">0</span><span class="unit">%</span></div><div class="stat-label">TEST COVERAGE</div></div>
+      <div class="stat"><div class="stat-num"><span class="count" data-target="25">0</span><span class="unit">+</span></div><div class="stat-label">API ENDPOINTS SHIPPED</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">ABOUT</div>
+      <h2 class="section-title">Built for systems that <span style="color:var(--amber)">can't go down</span></h2>
+      <p class="section-sub">Angular developer focused on scalable architecture, clean state, and real clinical impact.</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card-photo reveal">
+        <div class="photo-square"><img src="assets/profile.jpeg" alt="M Chidanand" onerror="this.style.display='none';this.parentElement.textContent='MC'"></div>
+        <h3>M Chidanand</h3>
+        <p class="role">Angular Developer</p>
+        <p style="color:var(--slate);font-size:.9rem;display:flex;align-items:center;justify-content:center;gap:8px;"><i class="fas fa-building"></i> Dedalus Healthcare</p>
+        <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:20px;"><i class="fas fa-file-pdf"></i> Download Resume</a>
+        <div class="about-social" style="justify-content:center;">
+          <a href="https://github.com/Chida1602" target="_blank" rel="noopener" class="icon-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/m-chidanand" target="_blank" rel="noopener" class="icon-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:maasandramchidanand@gmail.com" class="icon-email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="icon-resume" aria-label="Download Resume"><i class="fas fa-file-pdf"></i></a>
+        </div>
+      </div>
+
+      <div class="about-points reveal-stagger" id="aboutPoints">
+        <div class="point">
+          <div class="point-num mono">01</div>
+          <div>
+            <h4>Who I am</h4>
+            <p>I'm <b>M Chidanand</b>, an Associate Software Engineer at Dedalus Healthcare with almost 3 years building production-grade Angular and Spring Boot applications for enterprise healthcare systems. I focus on scalable architecture, reusable components, and delivering real business impact.</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-num mono">02</div>
+          <div>
+            <h4>What I do</h4>
+            <p>I specialize in <b>Angular SPA development</b> — NgRx state, reactive forms, lazy loading, RxJS-powered streams, and RESTful API integrations. On the backend I build services with <b>Spring Boot and Quarkus</b>, secured with JWT authentication, against MySQL, PostgreSQL, and Oracle.</p>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-num mono">03</div>
+          <div>
+            <h4>My approach</h4>
+            <p>I think in terms of <b>component architecture</b>, SOLID principles, and developer experience. Clean code, TypeScript strict typing, Cypress/unit test coverage, and CI/CD discipline are non-negotiable parts of my workflow.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">EXPERIENCE</div>
+      <h2 class="section-title">Professional journey</h2>
+      <p class="section-sub">Impact over responsibilities.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="t-item reveal">
+        <div class="t-dot"><i class="fas fa-code"></i></div>
+        <div class="t-head">
+          <div>
+            <h3>Associate Software Engineer</h3>
+            <p class="t-company">Dedalus Healthcare, Chennai</p>
+          </div>
+          <span class="t-period mono">Aug 2023 — Present</span>
+        </div>
+        <ul class="t-bullets">
+          <li>Developed 10+ Angular feature modules (TypeScript, RxJS, NgRx, Reactive Forms, Dependency Injection) achieving 20% faster page load across 3+ product lines.</li>
+          <li>Delivered 25+ RESTful API endpoints using Spring Boot with JWT Authentication and exception handling, supporting 500+ enterprise healthcare users.</li>
+          <li>Architected 50+ reusable Angular components with lazy loading, HTTP interceptors, and SOLID principles — cutting code duplication by 30% and release cycles by 40%.</li>
+          <li>Established Cypress E2E and unit test suites, scaling test coverage to 90% and reducing post-release defects by 25%.</li>
+          <li>Conducted code reviews, debugging, and root cause analysis; shipped 8+ high-priority features across 20+ Scrum and Kanban releases without schedule overruns.</li>
+        </ul>
+        <div class="t-tags">
+          <span class="t-tag">Angular</span><span class="t-tag">TypeScript</span><span class="t-tag">RxJS</span>
+          <span class="t-tag">NgRx</span><span class="t-tag">Spring Boot</span><span class="t-tag">JWT</span><span class="t-tag">Cypress</span><span class="t-tag">Agile</span>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-dot"><i class="fas fa-seedling"></i></div>
+        <div class="t-head">
+          <div>
+            <h3>Software Engineer Intern</h3>
+            <p class="t-company">Dedalus Healthcare, Chennai</p>
+          </div>
+          <span class="t-period mono">Mar 2023 — Jul 2023</span>
+        </div>
+        <ul class="t-bullets">
+          <li>Led frontend delivery of a diet planning web application using Angular and TypeScript, applying reusable component architecture that cut development effort by 35%.</li>
+          <li>Executed EPMA Silverlight-to-Angular migration across 5+ screens, leveraging SQL query optimization to slash legacy UI rendering time by 15%.</li>
+          <li>Coordinated with senior engineers and QA members inside Agile Scrum; met 3 sprint commitments on time and joined standups, reviews, and retrospectives.</li>
+        </ul>
+        <div class="t-tags">
+          <span class="t-tag">Angular</span><span class="t-tag">TypeScript</span><span class="t-tag">SQL</span><span class="t-tag">Agile Scrum</span>
+        </div>
+      </div>
+
+      <div class="t-item reveal">
+        <div class="t-dot"><i class="fas fa-brain"></i></div>
+        <div class="t-head">
+          <div>
+            <h3>Student Intern</h3>
+            <p class="t-company">HCL Technologies, Chennai</p>
+          </div>
+          <span class="t-period mono">Jan 2022 — May 2022</span>
+        </div>
+        <ul class="t-bullets">
+          <li>Trained and validated a Heart Disease Prediction System using Logistic Regression, achieving 87% accuracy on a 1,000+ record dataset via scikit-learn cross-validation and feature engineering.</li>
+          <li>Trimmed model false-positive rate through targeted feature engineering and hyperparameter tuning.</li>
+        </ul>
+        <div class="t-tags">
+          <span class="t-tag">Python</span><span class="t-tag">scikit-learn</span><span class="t-tag">Logistic Regression</span><span class="t-tag">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">EDUCATION</div>
+      <h2 class="section-title">Academic background</h2>
+    </div>
+    <div class="pub-card reveal" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+      <div>
+        <h3 style="margin-bottom:8px;">B.E. — Computer Science and Engineering</h3>
+        <p style="color:var(--slate);margin-bottom:0;">Sathyabama Institute of Science and Technology, Chennai</p>
+      </div>
+      <span class="t-period mono">2019 — 2023</span>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">SKILLS</div>
+      <h2 class="section-title">Technical proficiency</h2>
+      <p class="section-sub">Expertise across the Angular ecosystem and modern frontend stack.</p>
+    </div>
+
+    <div class="core-skills">
+      <div class="skill-row" data-level="92">
+        <div class="skill-row-top"><span class="name"><i class="fab fa-angular" style="color:var(--amber)"></i> Angular</span><span class="pct">92%</span></div>
+        <div class="skill-track"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-row" data-level="88">
+        <div class="skill-row-top"><span class="name"><i class="fab fa-js" style="color:var(--amber)"></i> TypeScript</span><span class="pct">88%</span></div>
+        <div class="skill-track"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-row" data-level="84">
+        <div class="skill-row-top"><span class="name"><i class="fas fa-stream" style="color:var(--amber)"></i> RxJS &amp; NgRx</span><span class="pct">84%</span></div>
+        <div class="skill-track"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-row" data-level="80">
+        <div class="skill-row-top"><span class="name"><i class="fab fa-java" style="color:var(--amber)"></i> Spring Boot / Quarkus</span><span class="pct">80%</span></div>
+        <div class="skill-track"><div class="skill-fill"></div></div>
+      </div>
+      <div class="skill-row" data-level="78">
+        <div class="skill-row-top"><span class="name"><i class="fas fa-vial" style="color:var(--amber)"></i> Test Automation (Cypress)</span><span class="pct">78%</span></div>
+        <div class="skill-track"><div class="skill-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="cat-grid reveal-stagger" id="catGrid">
+      <div class="cat-card"><h4><i class="fas fa-laptop-code"></i> Frontend</h4>
+        <div class="skill-pills"><span class="pill">Angular 12+</span><span class="pill">Standalone Components</span><span class="pill">RxJS</span><span class="pill">NgRx</span><span class="pill">Reactive Forms</span><span class="pill">Route Guards</span><span class="pill">HTTP Interceptors</span><span class="pill">Lazy Loading</span><span class="pill">Angular Material</span><span class="pill">Bootstrap</span></div></div>
+      <div class="cat-card"><h4><i class="fas fa-server"></i> Backend</h4>
+        <div class="skill-pills"><span class="pill">Java</span><span class="pill">Spring Boot</span><span class="pill">Quarkus</span><span class="pill">RESTful APIs</span><span class="pill">Microservices</span><span class="pill">JWT Auth</span></div></div>
+      <div class="cat-card"><h4><i class="fas fa-database"></i> Databases</h4>
+        <div class="skill-pills"><span class="pill">MySQL</span><span class="pill">PostgreSQL</span><span class="pill">Oracle</span><span class="pill">Query Optimisation</span><span class="pill">Performance Tuning</span></div></div>
+      <div class="cat-card"><h4><i class="fas fa-vial"></i> Testing</h4>
+        <div class="skill-pills"><span class="pill">Cypress</span><span class="pill">E2E Testing</span><span class="pill">Unit Testing</span><span class="pill">Integration Testing</span></div></div>
+      <div class="cat-card"><h4><i class="fas fa-tools"></i> DevOps &amp; Tools</h4>
+        <div class="skill-pills"><span class="pill">Docker</span><span class="pill">Git</span><span class="pill">GitHub</span><span class="pill">GitLab CI/CD</span><span class="pill">Linux</span><span class="pill">JIRA</span><span class="pill">Confluence</span><span class="pill">VS Code</span><span class="pill">IntelliJ IDEA</span></div></div>
+      <div class="cat-card"><h4><i class="fas fa-people-group"></i> Methodologies</h4>
+        <div class="skill-pills"><span class="pill">Agile</span><span class="pill">Scrum</span><span class="pill">Kanban</span><span class="pill">SDLC</span><span class="pill">Code Review</span><span class="pill">Version Control</span></div></div>
+    </div>
+
+    <div class="kw-bar">
+      <span class="lbl mono">ATS KEYWORDS:</span>
+      <span class="kw">Angular Development</span><span class="kw">Full Stack Engineering</span><span class="kw">Frontend Architecture</span>
+      <span class="kw">RESTful API Development</span><span class="kw">Spring Boot &amp; Microservices</span><span class="kw">NgRx State Management</span>
+      <span class="kw">Test Automation</span><span class="kw">CI/CD Pipelines</span><span class="kw">Performance Optimisation</span><span class="kw">Agile Delivery</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">PROJECTS</div>
+      <h2 class="section-title">Production-ready work</h2>
+      <p class="section-sub">Impact-driven engineering, in healthcare systems and personal R&amp;D.</p>
+    </div>
+
+    <div class="proj-grid reveal-stagger" id="projGrid">
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:#7c5cff18;color:#7c5cff;"><i class="fab fa-angular"></i></div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <span class="float-tag mono" style="color:#7c5cff;border-color:#7c5cff44;">Personal</span>
+            <a href="https://github.com/Chida1602/chida-portfolio" target="_blank" rel="noopener" class="proj-gh" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <h3>Personal Portfolio</h3>
+        <p class="summary">A responsive SPA built with Angular standalone components, lazy loading, and SEO best practices, deployed via GitHub Pages with automated Git-based CI.</p>
+        <div class="proj-impact">
+          <div><i class="fas fa-chart-line"></i> Standalone components + lazy loading for fast first paint</div>
+          <div><i class="fas fa-chart-line"></i> Automated CI deployment on every push</div>
+        </div>
+        <div class="proj-tags"><span class="pill">Angular</span><span class="pill">TypeScript</span><span class="pill">GitHub Pages</span></div>
+        <a href="https://github.com/Chida1602/chida-portfolio" target="_blank" rel="noopener" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:#3ddad018;color:#3ddad0;"><i class="fas fa-bowl-food"></i></div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <span class="float-tag mono" style="color:#3ddad0;border-color:#3ddad044;">Angular</span>
+            <a href="https://github.com/Chida1602/Angular-fitpro-project" target="_blank" rel="noopener" class="proj-gh" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <h3>FitPro — Diet Planner</h3>
+        <p class="summary">Meal tracking and personalised diet planning app for 100+ users, built with Angular 12, NgRx, and a RESTful API backend.</p>
+        <div class="proj-impact">
+          <div><i class="fas fa-chart-line"></i> Served 100+ active users</div>
+          <div><i class="fas fa-chart-line"></i> 40% faster rendering via lazy loading and perf tuning</div>
+        </div>
+        <div class="proj-tags"><span class="pill">Angular 12</span><span class="pill">NgRx</span><span class="pill">RxJS</span><span class="pill">REST API</span></div>
+        <a href="https://github.com/Chida1602/Angular-fitpro-project" target="_blank" rel="noopener" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-icon" style="background:#ff5c8a18;color:#ff5c8a;"><i class="fas fa-heart-pulse"></i></div>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <span class="float-tag mono" style="color:#ff5c8a;border-color:#ff5c8a44;">Machine Learning</span>
+            <a href="https://github.com/Chida1602/Heart-Disease-Prediction-using-Logistic-Regression" target="_blank" rel="noopener" class="proj-gh" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+        <h3>Heart Disease Prediction</h3>
+        <p class="summary">Logistic Regression model trained and validated on a 1,000+ record clinical dataset, with scikit-learn cross-validation and feature engineering.</p>
+        <div class="proj-impact">
+          <div><i class="fas fa-chart-line"></i> 87% accuracy on test dataset</div>
+          <div><i class="fas fa-chart-line"></i> Reduced false-positive rate through feature engineering</div>
+        </div>
+        <div class="proj-tags"><span class="pill">Python</span><span class="pill">scikit-learn</span><span class="pill">Logistic Regression</span></div>
+        <a href="https://github.com/Chida1602/Heart-Disease-Prediction-using-Logistic-Regression" target="_blank" rel="noopener" class="proj-link">View on GitHub <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="section-head reveal" style="margin-bottom:40px;">
+        <div class="tag-label">CERTIFICATIONS</div>
+        <h2 class="section-title" style="font-size:1.8rem;">Professional credentials</h2>
+      </div>
+      <div class="cert-grid reveal-stagger" id="certGrid">
+        <div class="cert-card"><i class="fab fa-angular"></i><div><span class="name">Mastering Frontend Development using Angular</span><span class="issuer">Dedalus Digiterati</span></div></div>
+        <div class="cert-card"><i class="fas fa-bolt"></i><div><span class="name">Building Microservices with Quarkus</span><span class="issuer">Udemy</span></div></div>
+      </div>
+    </div>
+
+    <div class="sub-block">
+      <div class="section-head reveal" style="margin-bottom:40px;">
+        <div class="tag-label">PUBLICATION</div>
+        <h2 class="section-title" style="font-size:1.8rem;">Research</h2>
+      </div>
+      <div class="research-card reveal">
+        <span class="research-stamp mono">PUBLISHED</span>
+        <span class="pub-badge mono"><i class="fas fa-file-alt"></i> IEEE Research Paper &middot; 2023</span>
+        <h3>CNN and Facial Features Based Smart Driver Alertness Detection</h3>
+        <p>Research on using convolutional neural networks for real-time driver drowsiness detection via yawning and eye-closure analysis. Achieved 93%+ accuracy on test dataset with real-time OpenCV video stream processing.</p>
+        <div class="proj-tags"><span class="pill">CNN</span><span class="pill">OpenCV</span><span class="pill">Deep Learning</span><span class="pill">Python</span><span class="pill">TensorFlow</span></div>
+        <div class="pub-links">
+          <a href="https://ieeexplore.ieee.org/document/10125701" target="_blank" rel="noopener" class="proj-link">View on IEEE Xplore <i class="fas fa-arrow-right"></i></a>
+          <a href="https://github.com/Chida1602/Chauffeur-Torpidity-Forewarning-Aid-using-CNN" target="_blank" rel="noopener" class="proj-link">View Repository <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">ACHIEVEMENTS</div>
+      <h2 class="section-title">Recognition &amp; milestones</h2>
+    </div>
+    <div class="ach-grid reveal-stagger" id="achGrid">
+      <div class="ach ach-clickable" onclick="openLightbox('assets/award-recognition-reward.jpg','Recognition &amp; Reward Award')">
+        <div class="ico">🏆</div>
+        <h4>Recognition &amp; Reward Award</h4>
+        <p>Dedalus Healthcare Townhall, 2025 — awarded for outstanding technical delivery and product impact.</p>
+        <span class="ach-view"><i class="fas fa-expand"></i> View certificate</span>
+      </div>
+      <div class="ach ach-clickable" onclick="openLightbox('assets/award-dna-core-2024.jpg','DNA Core Award Nominee — 2024')">
+        <div class="ico">🏅</div>
+        <h4>DNA Core Award Nominee — 2024</h4>
+        <p>Recognised company-wide for excellence through cross-functional collaboration.</p>
+        <span class="ach-view"><i class="fas fa-expand"></i> View certificate</span>
+      </div>
+      <div class="ach ach-clickable" onclick="openLightbox('assets/award-dna-core-2025.jpg','DNA Core Award Nominee — 2025')">
+        <div class="ico">🏅</div>
+        <h4>DNA Core Award Nominee — 2025</h4>
+        <p>Nominated for a second consecutive year for excellence in delivery and impact.</p>
+        <span class="ach-view"><i class="fas fa-expand"></i> View certificate</span>
+      </div>
+      <div class="ach ach-clickable" onclick="openLightbox('assets/ieee-certificate.jpg','IEEE Research Publication Certificate')">
+        <div class="ico">📜</div>
+        <h4>IEEE Research Publication</h4>
+        <p>Co-authored and published a research paper in an IEEE conference / journal.</p>
+        <span class="ach-view"><i class="fas fa-expand"></i> View certificate</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <button class="lightbox-close" aria-label="Close" onclick="closeLightbox(event)"><i class="fas fa-times"></i></button>
+  <div class="lightbox-inner">
+    <img id="lightboxImg" src="" alt="">
+    <p id="lightboxTitle" class="lightbox-title"></p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--panel);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="tag-label">CONTACT</div>
+      <h2 class="section-title">Get in touch</h2>
+      <p class="section-sub">Open to senior Angular roles, freelance projects, and collaborations.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Let's build something great</h3>
+        <p>Whether you have a job opportunity, a project requiring enterprise Angular expertise, or just want to connect — I'm always open to a conversation.</p>
+        <div class="info-item"><div class="info-ico"><i class="fas fa-envelope"></i></div><div><strong>EMAIL</strong><a href="mailto:maasandramchidanand@gmail.com">maasandramchidanand&#64;gmail.com</a></div></div>
+        <div class="info-item"><div class="info-ico"><i class="fas fa-phone"></i></div><div><strong>PHONE</strong><a href="tel:+917989099908">+91 7989099908</a></div></div>
+        <div class="info-item"><div class="info-ico"><i class="fas fa-map-marker-alt"></i></div><div><strong>LOCATION</strong><span>Chennai, Tamil Nadu, India</span></div></div>
+        <div class="info-item"><div class="info-ico"><i class="fas fa-building"></i></div><div><strong>CURRENT COMPANY</strong><span>Dedalus Healthcare</span></div></div>
+        <div class="info-item"><div class="info-ico"><i class="fas fa-code"></i></div><div><strong>SPECIALIZATION</strong><span>Angular · TypeScript · Spring Boot · NgRx</span></div></div>
+        <div class="contact-socials">
+          <a href="https://www.linkedin.com/in/m-chidanand" target="_blank" rel="noopener" class="icon-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Chida1602" target="_blank" rel="noopener" class="icon-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="mailto:maasandramchidanand@gmail.com" class="icon-email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="icon-resume" aria-label="Download Resume"><i class="fas fa-file-pdf"></i></a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div id="successBanner" class="success-banner" style="display:none;">
+          <i class="fas fa-check-circle"></i> Your email client opened — just hit Send!
+        </div>
+        <form class="form-card" id="contactForm">
+          <div class="form-row">
+            <div class="f-group"><label for="name">YOUR NAME</label><input id="name" type="text" placeholder="Jane Smith" required></div>
+            <div class="f-group"><label for="email">YOUR EMAIL</label><input id="email" type="email" placeholder="jane@company.com" required></div>
+          </div>
+          <div class="f-group"><label for="subject">SUBJECT</label><input id="subject" type="text" placeholder="Angular Developer opportunity at..." required></div>
+          <div class="f-group"><label for="message">MESSAGE</label><textarea id="message" rows="5" placeholder="Hi Chidanand, we have an exciting Angular role..." required></textarea></div>
+          <button type="submit" class="btn btn-primary btn-submit"><i class="fas fa-paper-plane"></i> Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;">
+    <div>
+      <div class="footer-logo">&lt;Chidanand /&gt;</div>
+      <p class="footer-desc">Angular Developer · Full Stack Engineer · TypeScript · Spring Boot · NgRx</p>
+    </div>
+    <div class="contact-socials" style="margin:0;">
+      <a href="https://www.linkedin.com/in/m-chidanand" target="_blank" rel="noopener" class="icon-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/Chida1602" target="_blank" rel="noopener" class="icon-github" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="mailto:maasandramchidanand@gmail.com" class="icon-email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      <a href="assets/resume.pdf" download="Chidanand_Resume.pdf" class="icon-resume" aria-label="Download Resume"><i class="fas fa-file-pdf"></i></a>
+    </div>
+    <div class="footer-right">
+      <p>Designed &amp; Built by <strong>M Chidanand</strong> &copy; <span id="year"></span></p>
+      <p>Made with <i class="fas fa-heart" style="color:#7c5cff"></i> using Angular-grade engineering</p>
+    </div>
+  </div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* achievement lightbox */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxTitle = document.getElementById('lightboxTitle');
+function openLightbox(src, title){
+  lightboxImg.onerror = () => {
+    lightboxImg.style.display = 'none';
+    lightboxTitle.textContent = title + ' — photo not added yet';
+  };
+  lightboxImg.onload = () => { lightboxImg.style.display = 'block'; lightboxTitle.textContent = title; };
+  lightboxImg.src = src;
+  lightboxImg.alt = title;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(e){
+  if (e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { lightbox.classList.remove('open'); document.body.style.overflow=''; } });
+
+/* theme toggle (dark/light) */
+const root = document.documentElement;
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+function applyTheme(t){
+  root.setAttribute('data-theme', t);
+  themeIcon.className = t === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+}
+const savedTheme = localStorage.getItem('theme');
+const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+applyTheme(savedTheme || (prefersLight ? 'light' : 'dark'));
+themeToggle.addEventListener('click', () => {
+  const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  applyTheme(next);
+  localStorage.setItem('theme', next);
+});
+
+/* nav scroll state */
+const navbar = document.getElementById('navbar');
+const pulseFill = document.getElementById('pulseFill');
+const totop = document.getElementById('totop');
+window.addEventListener('scroll', () => {
+  const sc = window.scrollY;
+  navbar.classList.toggle('scrolled', sc > 40);
+  totop.classList.toggle('show', sc > 600);
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  pulseFill.style.width = (max > 0 ? (sc / max) * 100 : 0) + '%';
+}, {passive:true});
+totop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+/* mobile menu */
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navLinks.classList.toggle('open'); });
+document.querySelectorAll('.navlink').forEach(a => a.addEventListener('click', () => { hamburger.classList.remove('active'); navLinks.classList.remove('open'); }));
+
+/* custom cursor dot (desktop) */
+const cursorDot = document.getElementById('cursorDot');
+window.addEventListener('mousemove', e => { cursorDot.style.left = e.clientX + 'px'; cursorDot.style.top = e.clientY + 'px'; });
+document.querySelectorAll('a,button').forEach(el => {
+  el.addEventListener('mouseenter', () => cursorDot.style.transform = 'translate(-50%,-50%) scale(2.4)');
+  el.addEventListener('mouseleave', () => cursorDot.style.transform = 'translate(-50%,-50%) scale(1)');
+});
+
+/* reveal on scroll */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+}, {threshold:0.15});
+revealEls.forEach(el => io.observe(el));
+
+/* animated counters */
+const counters = document.querySelectorAll('.count');
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      const el = en.target;
+      const target = parseFloat(el.dataset.target);
+      const isDecimal = el.dataset.target.includes('.');
+      let cur = 0;
+      const step = target / 60;
+      const tick = () => {
+        cur += step;
+        if (cur >= target) { el.textContent = isDecimal ? target.toFixed(2) : Math.round(target); return; }
+        el.textContent = isDecimal ? cur.toFixed(2) : Math.round(cur);
+        requestAnimationFrame(tick);
+      };
+      tick();
+      counterIO.unobserve(el);
+    }
+  });
+}, {threshold:0.5});
+counters.forEach(c => counterIO.observe(c));
+
+/* skill bars fill on scroll */
+const skillRows = document.querySelectorAll('.skill-row');
+const skillIO = new IntersectionObserver((entries) => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      const fill = en.target.querySelector('.skill-fill');
+      fill.style.width = en.target.dataset.level + '%';
+      skillIO.unobserve(en.target);
+    }
+  });
+}, {threshold:0.4});
+skillRows.forEach(r => skillIO.observe(r));
+
+/* contact form -> mailto */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value;
+  const body = `Name: ${name}\nEmail: ${email}\n\n${message}`;
+  window.location.href = `mailto:maasandramchidanand@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  document.getElementById('successBanner').style.display = 'flex';
+  this.style.display = 'none';
+});
+</script>
+</body>
+</html>
